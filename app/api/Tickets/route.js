@@ -3,9 +3,7 @@ import dataBaseConnection from '@/lib/dataBaseConnection';
 import Ticket from '@/models/Ticket';
 
 export async function POST(req) {
-    console.log(123456)
     try {
-        
         await dataBaseConnection(); // Assuming this function is correctly defined
         const body = await req.json();
         const x = await Ticket.insertMany(body);
@@ -20,7 +18,7 @@ export async function POST(req) {
 export async function GET(req) {
     try {
         await dataBaseConnection(); // Assuming this function is correctly defined
-        const tickets = await Ticket.find({});
+        const tickets = await Ticket.find();
         return NextResponse.json({ tickets: tickets }, { status: 200 });
     } catch (error) {
         console.error(error);

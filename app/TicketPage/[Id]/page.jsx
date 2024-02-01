@@ -3,7 +3,7 @@ import TicketForm from "../../(components)/TicketForm";
 import axios from "axios";
 const getTicketById = async (id) => {
   try {
-    const res = await axios.get(`api/${id}`);
+    const res = await axios.get(`/api/${id}`);
     return res.data;
   } catch (error) {
     console.log(error);
