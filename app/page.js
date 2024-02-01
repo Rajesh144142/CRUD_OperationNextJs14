@@ -8,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:3000/api/Tickets");
+      const { data } = await axios.get("api/Tickets");
       setTickets(data.tickets);
       setLoading(false);
     };

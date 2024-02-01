@@ -43,7 +43,7 @@ const TicketForm = ({ ticket }) => {
     if (EDITMODE) {
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/${ticket._id}`,
+          `/api/${ticket._id}`,
           formData
         );
         console.log(response.data);
@@ -52,7 +52,7 @@ const TicketForm = ({ ticket }) => {
       }
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/api/Tickets", formData);
+        const response = await axios.post("/api/Tickets", formData);
         console.log(response.data);
       } catch (error) {
         console.log(error);
