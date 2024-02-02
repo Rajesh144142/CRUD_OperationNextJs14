@@ -6,9 +6,8 @@ export async function POST(req) {
     try {
         await dataBaseConnection(); // Assuming this function is correctly defined
         const body = await req.json();
-        const x = await Ticket.insertMany(body);
-
-        return NextResponse.json({ msg: 'Ticket is Created' }, { status: 200 });
+        const response = await Ticket.insertMany(body);
+        return NextResponse.json({ msg: 'Ticket is Created',data:response}, { status: 200 });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ msg: 'Ticket is not Created' }, { status: 500 });

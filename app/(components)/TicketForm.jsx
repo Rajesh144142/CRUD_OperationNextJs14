@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { editTickets, createTickets } from "@/Redux/features/slice";
 const TicketForm = ({ ticket }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const EDITMODE = ticket._id === "new" ? false : true;
+
   const startingTicketData = {
     title: "",
     description: "",
@@ -41,22 +44,15 @@ const TicketForm = ({ ticket }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (EDITMODE) {
-      try {
-        const response = await axios.put(
-          `/api/${ticket._id}`,
-          formData
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      dispatch(editTickets({ id: ticket._id, data: formData }));
     } else {
-      try {
-        const response = await axios.post("/api/Tickets", formData);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const response = await axios.post("/api/Tickets", formData);
+      //   console.log(response.data);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      dispatch(createTickets(formData));
     }
     router.refresh();
     router.push("/");

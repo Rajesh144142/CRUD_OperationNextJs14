@@ -1,20 +1,16 @@
 "use client";
-
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import  axios from "axios";
-export default function DeleteBlock({id}) {
-  const router=useRouter()
+import { useSelector, useDispatch } from "react-redux";
+import { ticketdelete } from "@/Redux/features/slice";
+export default function DeleteBlock({ id }) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { tickets, error, loading } = useSelector((state) => state.Ticket);
   const deleteTicket = async () => {
-    try {
-      const res=await axios.delete(`/api/${id}`);
-      console.log(res.data);
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    dispatch(ticketdelete(id));
+  };
   return (
     <FontAwesomeIcon
       icon={faX}

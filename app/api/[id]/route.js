@@ -15,10 +15,10 @@ export async function PUT(req, { params }) {
     try {
         const { id } = params;
         const body = await req.json();
-        await Ticket.findByIdAndUpdate(id, {
+        const response=await Ticket.findByIdAndUpdate(id, {
             ...body,
         });
-        return NextResponse.json({ msg: "Ticket Updated..." }, { status: 200 });
+        return NextResponse.json({ msg: "Ticket Updated...",data:response }, { status: 200 });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ msg: "Error", error }, { status: 500 });
@@ -30,7 +30,7 @@ export async function DELETE(req, { params }) {
     try {
         const { id } = params;
         await Ticket.findByIdAndDelete(id);
-        return NextResponse.json({ msg: "Ticket deleted..." }, { status: 200 });
+        return NextResponse.json({ msg: "Ticket deleted...",id }, { status: 200 });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ msg: "Error", error }, { status: 500 });
