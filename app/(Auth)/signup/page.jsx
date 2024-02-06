@@ -39,7 +39,7 @@ const Page = () => {
       }
 
       <div className=" flex flex-col sm:w-[350px] sm:h-[370px] lg:w-[400px] lg:h-[420px] sm:border-2 sm:border-white justify-center items-center rounded-md">
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
         <form className=" flex flex-col  justify-center items-center gap-2">
           <input
             type="text"
