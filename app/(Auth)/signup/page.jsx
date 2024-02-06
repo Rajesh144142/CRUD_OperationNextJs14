@@ -7,7 +7,7 @@ import { signUp } from "@/Redux/api/authApi";
 import { clearError } from "@/Redux/features/authSlice";
 const Page = () => {
   const dispatch = useDispatch();
-  const { error } = useSelector((state) => state.User);
+  const {user,loading,error } = useSelector((state) => state.User);
   // const [clearError, setClearError] = useState(false);
   const router = useRouter();
   const initialState = {
@@ -20,23 +20,27 @@ const Page = () => {
     e.preventDefault();
     dispatch(signUp(data));
     setData(initialState);
+    console.log(user)
+    if(user?.message) router.push('/');
   };
   const handleError = () => {
     dispatch(clearError());
   };
   return (
     <div className="flex justify-center items-center h-[100%] flex-col ">
-      {error? (
+      {error ? (
         <h1 className="text-red-600 flex gap-2 justify-center text-sm items-center h-[50px]">
           {error}
-          <div className="text-sm font-bold border-2 rounded-[50%] border-red-600 flex justify-center items-center w-[25px] h-[25px]" onClick={handleError}>
+          <div
+            className="text-sm font-bold border-2 rounded-[50%] border-red-600 flex justify-center items-center w-[25px] h-[25px]"
+            onClick={handleError}
+          >
             X
           </div>
-        </h1>):(
-        <h1 className="text-red-600 flex gap-2 justify-center text-sm items-center h-[50px]">
-          
-        </h1>)
-      }
+        </h1>
+      ) : (
+        <h1 className="text-red-600 flex gap-2 justify-center text-sm items-center h-[50px]"></h1>
+      )}
 
       <div className=" flex flex-col sm:w-[350px] sm:h-[370px] lg:w-[400px] lg:h-[420px] sm:border-2 sm:border-white justify-center items-center rounded-md">
         <h1>Sign Up</h1>

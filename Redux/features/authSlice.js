@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Login, signUp } from '@/Redux/api/authApi'
 const User = createSlice({
     name: 'User',
-    initialState: { user: {}, loading: false, error: null },
+    initialState: { user:{}, loading: false, error: null },
     reducers: {
         clearError:(state)=>{
             state.error=null
@@ -24,7 +24,6 @@ const User = createSlice({
             state.user = action.payload;
             state.loading = false;
         }).addCase(signUp.rejected, (state, action) => {
-            state.loading = true;
             state.error = action.payload;
         })
     }
