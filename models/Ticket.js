@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise;
 
 const ticketSchema = new Schema({
     title: String,
-    description: String, // Corrected typo here
+    description: String, 
     category: String,
     priority: String,
     status: String,

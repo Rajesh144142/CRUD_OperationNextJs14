@@ -2,24 +2,24 @@
 import TicketCard from "./(components)/TicketCard";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ticketsGet } from "@/Redux/features/slice";
+import { ticketsGet } from "@/Redux/api/postApi";
 const Dashboard = () => {
   const { tickets, loading, error } = useSelector((state) => state.Ticket);
   const dispatch = useDispatch();
   useEffect(() => {
-    const fetchTickets =() => {
+    const fetchTickets = () => {
       dispatch(ticketsGet());
     };
     fetchTickets();
-  },[dispatch]);
+  }, [dispatch]);
   const uniqueCategories = [
     ...new Set(tickets?.map(({ category }) => category)),
   ];
 
   return (
     <div className="p-5">
-      {error &&<p className="text-center text-2xl pt-5">Something is wrong</p> }
-      {loading && <p className="text-center text-2xl pt-5">Loading...</p>}
+      {error && <p className="text-center text-2xl pt-5">Something is wrong</p>}
+      {(loading && tickets.length === 0) && <p className="text-center text-2xl pt-5">Loading...</p>}
       <div>
         {tickets &&
           uniqueCategories?.map((uniqueCategory, categoryIndex) => (
@@ -40,7 +40,7 @@ const Dashboard = () => {
           ))}
 
       </div>
-      {(tickets.length === 0 && loading==false )&& <p className="text-center text-2xl pt-5">No Tickets Available</p>}
+      {(tickets.length === 0 && loading === false) && <p className="text-center text-2xl pt-5">No Tickets Available</p>}
     </div>
   )
 }

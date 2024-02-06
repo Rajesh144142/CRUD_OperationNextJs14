@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { editTickets, createTickets } from "@/Redux/features/slice";
+import { editTickets, createTickets } from "@/Redux/api/postApi";
 const TicketForm = ({ ticket }) => {
   const router = useRouter();
   const dispatch = useDispatch();

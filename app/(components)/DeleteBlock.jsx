@@ -3,7 +3,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { ticketdelete } from "@/Redux/features/slice";
+import { ticketdelete } from "@/Redux/api/postApi";
 export default function DeleteBlock({ id }) {
   const router = useRouter();
   const dispatch = useDispatch();

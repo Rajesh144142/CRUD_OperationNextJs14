@@ -14,7 +14,7 @@ const Nav = () => {
         </Link>
       </div>
       <div>
-        <p className=" text-default-text">rajeshkh704435@gmail.com</p>
+        <Link href='/Login' className=" text-default-text">Login</Link>
       </div>
     </nav>
   );
